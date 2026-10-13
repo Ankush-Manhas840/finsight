@@ -1,0 +1,7 @@
+services:
+  qdrant:                       # used from Nov 29
+    image: qdrant/qdrant
+    ports:
+      - "6333:6333"
+    volumes:
+      - ./data/processed/qdrant:/qdrant/storage
