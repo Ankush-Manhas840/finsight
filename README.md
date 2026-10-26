@@ -26,7 +26,7 @@ Annual report PDFs (BSE) → Docling parsing (tables → markdown)
 | Area | Tool |
 |---|---|
 | Language | Python 3.10+ |
-| LLM | Gemini API (free tier); Groq / Ollama as backup |
+| LLM | Gemini API Flash (free tier); Groq / Ollama as backup |
 | Framework | LangChain, LangGraph |
 | PDF parsing | PyPDF → Docling |
 | Embeddings / reranker | sentence-transformers, `BAAI/bge-reranker-base` |
@@ -36,6 +36,7 @@ Annual report PDFs (BSE) → Docling parsing (tables → markdown)
 | API / UI | FastAPI, Streamlit |
 | Testing | pytest |
 | Containers | Docker, Docker Compose |
+| Deploy (free) | Streamlit Community Cloud + Qdrant Cloud free cluster |
 
 ## Data
 
@@ -124,7 +125,7 @@ Detailed study links for each day are in [RESOURCES.md](RESOURCES.md).
 - [ ] **Dec 15** — Streamlit chat UI `[feat: add chat ui]`
 - [ ] **Dec 16** — Upload + ingest `[feat: add upload]`
 - [ ] **Dec 17** — Docker `[chore: add docker]`
-- [ ] **Dec 18** — Deploy `[chore: deploy demo]`
+- [ ] **Dec 18** — Deploy to Streamlit Cloud + Qdrant Cloud `[chore: deploy demo]`
 - [ ] **Dec 19** — *Buffer*
 ### Week 8 — Showcase
 - [ ] **Dec 20** — 2 more companies `[feat: add companies]`

@@ -11,7 +11,7 @@ Buffer days are for catching up. If you are on track, use them to re-read your o
 
 | Day | Study first | Then build |
 |---|---|---|
-| **Nov 1** | [Karpathy: Intro to Large Language Models](https://www.youtube.com/watch?v=zjkBMFhNj_g) (1 h): what an LLM is, tokens, why it hallucinates | Get a free [Gemini API key](https://aistudio.google.com/), put it in `.env`, make `src/llm.py` print an answer to "What is revenue?" |
+| **Nov 1** | [Karpathy: Intro to Large Language Models](https://www.youtube.com/watch?v=zjkBMFhNj_g) (1 h): what an LLM is, tokens, why it hallucinates | Get a free [Gemini API key](https://aistudio.google.com/), put it in `.env`, make `src/llm.py` print an answer to "What is revenue?". Use a **Flash** model and note your real free limits from [AI Studio rate limits](https://aistudio.google.com/rate-limit) |
 | **Nov 2** | [Gemini API docs](https://ai.google.dev/gemini-api/docs): text generation, system instructions, structured output (JSON) | In `notebooks/01_llm_basics.ipynb`: ask for `{"metric": ..., "definition": ...}` as JSON and parse it into a Python dict |
 | **Nov 3** | [Zerodha Varsity — Fundamental Analysis](https://zerodha.com/varsity/module/fundamental-analysis/), chapters 1–4 (annual report, P&L statement) | Download the FY2025 annual reports for **Maruti Suzuki, Mahindra & Mahindra, Bajaj Auto** from [BSE](https://www.bseindia.com/) or the company sites into `data/raw/`. Write their sources in `data/SOURCES.md` |
 | **Nov 4** | Varsity chapters 5–7 (balance sheet, cash flow statement) | Open each PDF and find revenue, net profit and total debt yourself. Fill 10 rows of `eval/ground_truth.csv`, cross-checking on [Screener.in](https://www.screener.in/) |
@@ -25,9 +25,9 @@ Buffer days are for catching up. If you are on track, use them to re-read your o
 |---|---|---|
 | **Nov 8** | [DeepLearning.AI: LangChain for LLM Application Development](https://www.deeplearning.ai/short-courses/langchain-for-llm-application-development/), lessons 1–3 | Rewrite `src/llm.py` to use a LangChain chat model + prompt template |
 | **Nov 9** | Same course, lessons 4–6 (chains, Q&A over documents, evaluation) | `notebooks/03_pdf_loading.ipynb`: load one annual report with `PyPDFLoader`, print 3 pages, and notice how badly the tables come out |
-| **Nov 10** | [LangChain docs: text splitters](https://python.langchain.com/docs/concepts/text_splitters/). What chunk size and overlap mean | `src/ingest.py`: load all PDFs and split them into chunks with metadata `{company, year, page}` |
+| **Nov 10** | [LangChain docs](https://docs.langchain.com/) (search "text splitters"). What chunk size and overlap mean | `src/ingest.py`: load all PDFs and split them into chunks with metadata `{company, year, page}` |
 | **Nov 11** | [Chroma docs: getting started](https://docs.trychroma.com/) | `src/vectorstore.py`: embed the chunks into a persistent Chroma DB, then run a similarity search for "total borrowings" |
-| **Nov 12** | [LangChain RAG tutorial](https://python.langchain.com/docs/tutorials/rag/) | `src/rag.py`: retrieve top-k chunks, answer, and cite `(company, year, page)` |
+| **Nov 12** | [LangChain docs](https://docs.langchain.com/) (search "RAG tutorial") | `src/rag.py`: retrieve top-k chunks, answer, and cite `(company, year, page)` |
 | **Nov 13** | Re-read your code end to end | Make `python -m src.rag "question"` work. Ask 10 questions and log every wrong answer in `LEARNINGS.md` |
 | **Nov 14** | *Buffer* | Clean up the code and update the README "How to run" section |
 
@@ -38,7 +38,7 @@ Buffer days are for catching up. If you are on track, use them to re-read your o
 | **Nov 15** | [Hamel Husain: Your AI Product Needs Evals](https://hamel.dev/blog/posts/evals/) | `eval/questions.jsonl`: 30 questions with the expected answer and source page, using your ground truth |
 | **Nov 16** | [DeepLearning.AI: Building and Evaluating Advanced RAG](https://www.deeplearning.ai/short-courses/building-evaluating-advanced-rag/), lessons 1–2 | `eval/eval_retrieval.py`: hit rate@k (did the correct page get retrieved?) |
 | **Nov 17** | Learn how to compare numbers with a tolerance and parse "₹1,23,456 crore" | `eval/eval_numbers.py`: % of answers whose number is within 1% of the truth |
-| **Nov 18** | [RAGAS docs](https://docs.ragas.io/): faithfulness, answer relevancy | Add a RAGAS faithfulness run to the eval script |
+| **Nov 18** | [RAGAS docs](https://docs.ragas.io/): faithfulness, answer relevancy | Add a RAGAS faithfulness run to the eval script. RAGAS makes many LLM calls per question, so **cache LLM answers to disk** first or you will burn the free quota |
 | **Nov 19** | — | **Run baseline v1.** Put the scores in the README results table. Sort failures into types: table misread, wrong year, wrong company, made-up number |
 | **Nov 20** | — | Grow the set to 50 questions, including tricky ones (standalone vs consolidated, FY naming) |
 | **Nov 21** | *Buffer* | Week 3 in `LEARNINGS.md`: which failure type is most common? |
@@ -50,9 +50,9 @@ Buffer days are for catching up. If you are on track, use them to re-read your o
 | **Nov 22** | [Docling docs](https://docling-project.github.io/docling/): PDF tables to markdown | `src/ingest.py`: parse with Docling and keep tables as markdown |
 | **Nov 23** | Chunking strategies (same Advanced RAG course, lesson 3) | Table-aware chunking: keep each table whole with its heading. **Rerun evals (v2)** |
 | **Nov 24** | [Chroma metadata filtering](https://docs.trychroma.com/) | Get the LLM to extract `{company, year}` from the question and filter retrieval with it |
-| **Nov 25** | [Pinecone: Hybrid search intro](https://www.pinecone.io/learn/hybrid-search-intro/) (BM25 + vectors) | Hybrid retriever: BM25 + vector search combined |
+| **Nov 25** | [Pinecone: Hybrid search](https://docs.pinecone.io/guides/search/hybrid-search) (BM25 + vectors) | Hybrid retriever: BM25 + vector search combined |
 | **Nov 26** | [Sentence-Transformers: cross-encoders / rerankers](https://www.sbert.net/docs/cross_encoder/usage/usage.html) | Add a reranker (`BAAI/bge-reranker-base`) on the top 20 results |
-| **Nov 27** | [Anthropic: Contextual Retrieval](https://www.anthropic.com/news/contextual-retrieval) | Add a context header to each chunk ("Maruti FY24, Balance Sheet"). **Rerun evals (v3)** and fill in the v1→v2→v3 table |
+| **Nov 27** | [Anthropic: Contextual Retrieval](https://www.anthropic.com/research/contextual-retrieval) | Add a context header to each chunk ("Maruti FY24, Balance Sheet"). **Rerun evals (v3)** and fill in the v1→v2→v3 table |
 | **Nov 28** | *Buffer* | `LEARNINGS.md`: which fix helped the most, and why? |
 
 ## Week 5 (Nov 29–Dec 5): Qdrant + agents
@@ -76,7 +76,7 @@ Buffer days are for catching up. If you are on track, use them to re-read your o
 | **Dec 8** | — | Refuse investment-advice and off-topic questions, with tests |
 | **Dec 9** | — | Add 20 agent questions (comparisons, ratios) to the eval set |
 | **Dec 10** | — | **Full eval run (v4)** and update the README table |
-| **Dec 11** | [LangSmith docs](https://docs.smith.langchain.com/) (free tier) or plain logging | Log tokens, latency and cost per query, and add averages to the README |
+| **Dec 11** | [LangSmith docs](https://docs.langchain.com/langsmith/observability) (free: 5,000 traces/month) or plain logging | Log tokens, latency and cost per query, and add averages to the README |
 | **Dec 12** | *Buffer* | `LEARNINGS.md` |
 
 ## Week 7 (Dec 13–19): API, UI, Docker, deploy
@@ -88,7 +88,7 @@ Buffer days are for catching up. If you are on track, use them to re-read your o
 | **Dec 15** | [Streamlit: build a chat app](https://docs.streamlit.io/develop/tutorials/chat-and-llm-apps) | `app/streamlit_app.py`: a chat UI that shows citations and charts |
 | **Dec 16** | — | Upload a new annual report from the UI and ingest it on the fly |
 | **Dec 17** | [Docker: containerize a Python app](https://docs.docker.com/guides/python/) | A `Dockerfile` + compose setup running api + qdrant + ui |
-| **Dec 18** | [Hugging Face Spaces docs](https://huggingface.co/docs/hub/spaces) or Render's free tier | Deploy a live demo |
+| **Dec 18** | [Streamlit Community Cloud](https://docs.streamlit.io/deploy/streamlit-community-cloud) + [Qdrant Cloud free cluster](https://qdrant.tech/documentation/cloud/) | Build the index **on your own PC** (Docling and the reranker are too heavy for ~1 GB RAM), upload vectors to Qdrant Cloud, deploy the Streamlit app. Open the Qdrant cluster weekly or it gets paused. *(Hugging Face Docker/Gradio Spaces now need a paid plan; Render's 512 MB is too small.)* |
 | **Dec 19** | *Buffer* | Fix whatever broke in deployment |
 
 ## Week 8 (Dec 20–26): Polish + showcase
@@ -110,7 +110,7 @@ Ask Claude to mock-interview you on FinSight using `LEARNINGS.md`, covering chun
 
 ## Backup resources (if a concept doesn't click)
 - [Hugging Face LLM Course](https://huggingface.co/learn/llm-course) and [Agents Course](https://huggingface.co/learn/agents-course)
-- [Groq](https://console.groq.com/) (free, fast open models) or [Ollama](https://ollama.com/) (run models locally) if the Gemini free tier runs out
+- [Groq](https://console.groq.com/) (free with per-model rate limits, fast open models) or [Ollama](https://ollama.com/) (run models locally) if the Gemini free tier runs out
 - Ask Claude: "explain X like I'm new, then quiz me"
 
 > Library docs change often (especially LangChain). If a link moves, search for the page title.
