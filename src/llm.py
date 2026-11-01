@@ -1,7 +1,19 @@
-"""Create the chat model used everywhere (Gemini by default, key from .env)."""
+import os
+from dotenv import load_dotenv
+from google import genai
 
 
 def get_llm():
-    """Return a chat model. Nov 1: raw SDK call. Nov 8: switch to a LangChain chat model."""
-    # TODO (Nov 1): load GOOGLE_API_KEY from .env and make one call.
-    raise NotImplementedError
+    """Return a client that can talk to Gemini."""
+    load_dotenv()                      # reads the .env file
+    api_key = os.getenv("GOOGLE_API_KEY")         # which name did you use in .env?
+    return genai.Client(api_key=api_key)
+
+
+if __name__ == "__main__":
+    client = get_llm()
+    response = client.models.generate_content(
+        model="gemini-3.8-flash",
+        contents="what is revenue",                # your question
+    )
+    print(response.text)                # which part holds the answer text?
