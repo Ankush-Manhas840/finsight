@@ -188,7 +188,7 @@ Green boxes are built, grey boxes are planned.
 
 ```mermaid
 flowchart LR
-    PDF["Annual report PDFs<br/>3 companies, FY2025 so far"]:::done --> READ["Read text and tables<br/>pypdf, then Docling"]:::done
+    PDF["Annual report PDFs<br/>3 companies × 3 years"]:::done --> READ["Read text and tables<br/>pypdf, then Docling"]:::done
     READ --> CHUNK["Split into chunks<br/>labelled company, year, page"]:::todo
     CHUNK --> EMB["Turn chunks into embeddings"]:::done
     EMB --> VDB[("Vector database<br/>Chroma, then Qdrant")]:::todo
@@ -251,7 +251,7 @@ flowchart LR
 
 Annual reports of **Maruti Suzuki, Mahindra & Mahindra and Bajaj Auto**:
 - ✅ FY2025: downloaded from the NSE archive and Bajaj's investor website (see [`data/SOURCES.md`](data/SOURCES.md))
-- Planned: FY2023 and FY2024
+- ✅ FY2023 and FY2024: downloaded from the NSE archive
 
 ---
 
@@ -279,7 +279,7 @@ The study material for each day is in [RESOURCES.md](RESOURCES.md).
 - [x] **Nov 4:** Answer key: revenue, profit, equity and borrowings for 3 companies
 - [x] **Nov 5:** Ratios added to the answer key (*finance glossary in LEARNINGS.md still to write*)
 - [x] **Nov 6:** Embeddings notebook and short-form expansion
-- [ ] **Nov 7:** FY2023 and FY2024 reports. *Buffer day*
+- [x] **Nov 7:** FY2023 and FY2024 reports downloaded (9 PDFs in total). *Buffer day*
 
 ### Week 2: LangChain and the first RAG
 - [ ] **Nov 8:** LangChain chat model
