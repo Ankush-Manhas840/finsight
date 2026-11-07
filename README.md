@@ -1,6 +1,6 @@
 # FinSight: Annual Report Analyst
 
-Ask questions about Indian listed companies in plain English, for example *"Compare Maruti and Mahindra profit margins for FY2023 to FY2025"*, and get an answer with:
+Ask questions about Indian listed companies in plain English, for example *"Compare Maruti and Mahindra profit margins for FY2023 to FY2026"*, and get an answer with:
 
 - the **page number** it came from in the official annual report,
 - numbers **calculated by code**, not guessed by the AI,
@@ -133,12 +133,12 @@ Copy `.env.example` to a new file named `.env`, then replace `paste-your-key-her
 
 **3. Download the annual reports**
 
-The PDFs are not stored in this repository because they are large (17 to 29 MB each). Download the three reports listed in [`data/SOURCES.md`](data/SOURCES.md) using a web browser, and save them in `data/raw/` with exactly these names:
+The PDFs are not stored in this repository because they are large (12 to 29 MB each). Download the 12 reports listed in [`data/SOURCES.md`](data/SOURCES.md) using a web browser, and save them in `data/raw/` with exactly these names:
 
 ```
-data/raw/maruti_FY2025.pdf
-data/raw/mahindra_FY2025.pdf
-data/raw/bajaj_FY2025.pdf
+data/raw/maruti_FY2023.pdf    ...    data/raw/maruti_FY2026.pdf
+data/raw/mahindra_FY2023.pdf  ...    data/raw/mahindra_FY2026.pdf
+data/raw/bajaj_FY2023.pdf     ...    data/raw/bajaj_FY2026.pdf
 ```
 
 **4. Try it**
@@ -188,7 +188,7 @@ Green boxes are built, grey boxes are planned.
 
 ```mermaid
 flowchart LR
-    PDF["Annual report PDFs<br/>3 companies × 3 years"]:::done --> READ["Read text and tables<br/>pypdf, then Docling"]:::done
+    PDF["Annual report PDFs<br/>3 companies × 4 years"]:::done --> READ["Read text and tables<br/>pypdf, then Docling"]:::done
     READ --> CHUNK["Split into chunks<br/>labelled company, year, page"]:::todo
     CHUNK --> EMB["Turn chunks into embeddings"]:::done
     EMB --> VDB[("Vector database<br/>Chroma, then Qdrant")]:::todo
@@ -251,7 +251,7 @@ flowchart LR
 
 Annual reports of **Maruti Suzuki, Mahindra & Mahindra and Bajaj Auto**:
 - ✅ FY2025: downloaded from the NSE archive and Bajaj's investor website (see [`data/SOURCES.md`](data/SOURCES.md))
-- ✅ FY2023 and FY2024: downloaded from the NSE archive
+- ✅ FY2023, FY2024 and FY2026: downloaded from the NSE archive (FY2026 is the latest, published June to August 2026)
 
 ---
 
@@ -279,7 +279,7 @@ The study material for each day is in [RESOURCES.md](RESOURCES.md).
 - [x] **Nov 4:** Answer key: revenue, profit, equity and borrowings for 3 companies
 - [x] **Nov 5:** Ratios added to the answer key (*finance glossary in LEARNINGS.md still to write*)
 - [x] **Nov 6:** Embeddings notebook and short-form expansion
-- [x] **Nov 7:** FY2023 and FY2024 reports downloaded (9 PDFs in total). *Buffer day*
+- [x] **Nov 7:** FY2023, FY2024 and FY2026 reports downloaded (12 PDFs in total). *Buffer day*
 
 ### Week 2: LangChain and the first RAG
 - [ ] **Nov 8:** LangChain chat model

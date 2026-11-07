@@ -15,11 +15,15 @@ FY2025 = 1 April 2024 to 31 March 2025.
 | `mahindra_FY2023.pdf` | Mahindra & Mahindra | FY2023 | 474 | ₹ crore | [NSE filing (zip)](https://nsearchives.nseindia.com/annual_reports/AR_22135_M%26M_2022_2023_03072023013854_07032023070001.zip) | 2026-11-07 |
 | `bajaj_FY2023.pdf` | Bajaj Auto | FY2023 | 315 | ₹ crore | [NSE filing (zip)](https://nsearchives.nseindia.com/annual_reports/AR_22141_BAJAJ-AUTO_2022_2023_03072023160735_07032023170006.zip) | 2026-11-07 |
 
-FY2024 = 1 April 2023 to 31 March 2024. FY2023 = 1 April 2022 to 31 March 2023.
+| `maruti_FY2026.pdf` | Maruti Suzuki India | FY2026 | 270 | ₹ million | [NSE filing](https://nsearchives.nseindia.com/annual_reports/AR_30271_MARUTI_2025_2026_A_19335803_08082026213212.pdf) | 2026-11-07 |
+| `mahindra_FY2026.pdf` | Mahindra & Mahindra | FY2026 | 267 | ₹ crore | [NSE filing](https://nsearchives.nseindia.com/annual_reports/AR_29572_M%26M_2025_2026_A_16591991_04072026174358.pdf) | 2026-11-07 |
+| `bajaj_FY2026.pdf` | Bajaj Auto | FY2026 | 444 | ₹ crore | [NSE filing](https://nsearchives.nseindia.com/annual_reports/AR_29442_BAJAJ-AUTO_2025_2026_A_23800060_25062026131543.pdf) | 2026-11-07 |
+
+FY2026 = 1 April 2025 to 31 March 2026 (the latest year, published June to August 2026). FY2024 = 1 April 2023 to 31 March 2024. FY2023 = 1 April 2022 to 31 March 2023.
 
 **How the FY2023 and FY2024 files were downloaded:** NSE lists every company's reports at `https://www.nseindia.com/api/annual-reports?index=equities&symbol=<SYMBOL>` (symbols `MARUTI`, `M%26M`, `BAJAJ-AUTO`). The list must be requested with a normal browser user agent and a `Referer: https://www.nseindia.com/` header; the archive files then download normally. FY2023 reports come as **zip files** holding one PDF each.
 
-**Also available:** FY2026 reports (published June to August 2026) are already listed on NSE. Not downloaded yet; the plan covers FY2023 to FY2025.
+**Keeping up to date:** new reports appear on NSE each June to August. Check the same list each year and add the new year.
 
 ## Traps to remember
 

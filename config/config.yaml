@@ -1,7 +1,7 @@
 data:
   raw_dir: data/raw
   companies: [maruti, mahindra, bajaj_auto]
-  years: [2023, 2024, 2025]
+  years: [2023, 2024, 2025, 2026]
 
 llm:
   provider: gemini
