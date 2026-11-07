@@ -20,6 +20,15 @@ An annual report is 250 to 300 pages long. If you ask a general chatbot "What wa
 
 This approach is called **RAG** (retrieval-augmented generation): first find the right text, then let the AI answer from it.
 
+```mermaid
+flowchart LR
+    Q["Question:<br/>What was Maruti's PAT?"] --> E["Expand short forms<br/>PAT → profit after tax"]
+    E --> S["Search the reports<br/>for the closest pages"]
+    S --> P["Top 5 pages<br/>e.g. Maruti FY2025, page 175"]
+    P --> G["Gemini writes the answer<br/>using only those pages"]
+    G --> A["Answer:<br/>₹1,39,552 million<br/>(page 175)"]
+```
+
 ---
 
 ## What works today ✅
@@ -46,6 +55,17 @@ The question *"What was the PAT this year?"* was compared with 4 report lines. W
 |---|---|---|---|
 | Question as typed ("PAT") | 0.08 | 0.27 | ❌ cricket line |
 | After expanding "PAT" to "profit after tax" | **0.55** | 0.17 | ✅ correct line |
+
+```mermaid
+flowchart LR
+    subgraph Before["Without expansion"]
+        Q1["What was the PAT this year?"] -->|0.27 best match| W["India won the cricket match ❌"]
+        Q1 -.->|0.08| R1["Profit for the year ..."]
+    end
+    subgraph After["With expansion"]
+        Q2["what was the profit after tax this year?"] -->|0.55 best match| R2["Profit for the year ... ✅"]
+    end
+```
 
 When comparing "Net profit increased" with "PAT grew", models 5 times larger scored only 0.35 (`all-mpnet-base-v2`) and 0.63 (`BAAI/bge-base-en-v1.5`) without expansion. The small model **with** expansion scored 0.74. So a simple dictionary of short forms (`pat → profit after tax`) is applied before searching.
 
@@ -162,21 +182,53 @@ finsight/
 
 ## How it will work (full design)
 
+Green boxes are built, grey boxes are planned.
+
+**Step 1: prepare the reports (done once)**
+
+```mermaid
+flowchart LR
+    PDF["Annual report PDFs<br/>3 companies, FY2025 so far"]:::done --> READ["Read text and tables<br/>pypdf, then Docling"]:::done
+    READ --> CHUNK["Split into chunks<br/>labelled company, year, page"]:::todo
+    CHUNK --> EMB["Turn chunks into embeddings"]:::done
+    EMB --> VDB[("Vector database<br/>Chroma, then Qdrant")]:::todo
+    CHUNK --> KW[("Keyword index<br/>BM25")]:::todo
+
+    classDef done fill:#d4edda,stroke:#28a745,color:#000
+    classDef todo fill:#eeeeee,stroke:#999999,color:#000
 ```
-Annual report PDFs → read text and tables
-                          │
-         split into chunks, each labelled {company, year, page}
-                          │
-           embeddings → vector database + keyword index
-                          │
- Question → expand short forms → agent ── search tool (meaning + keyword search)
-                                      ├── calculator tool (ratios, growth)
-                                      ├── chart tool
-                                      └── number check → answer + page citations
-                          │
-                 web API  →  chat app
-                          │
-         eval/: was the right page found? is the number correct?
+
+**Step 2: answer a question (every time)**
+
+```mermaid
+flowchart TD
+    U["User question"]:::todo --> X["Expand short forms"]:::done
+    X --> AG{"Agent decides<br/>which tool to use"}:::todo
+    AG --> T1["Search tool<br/>meaning + keyword search"]:::todo
+    AG --> T2["Calculator tool<br/>ratios, growth"]:::todo
+    AG --> T3["Chart tool"]:::todo
+    T1 --> CHK["Number check<br/>against the report"]:::todo
+    T2 --> CHK
+    T3 --> CHK
+    CHK --> ANS["Answer with page citations"]:::todo
+    ANS --> UI["Web API + chat app"]:::todo
+
+    classDef done fill:#d4edda,stroke:#28a745,color:#000
+    classDef todo fill:#eeeeee,stroke:#999999,color:#000
+```
+
+**Step 3: measure accuracy**
+
+```mermaid
+flowchart LR
+    KEY["Answer key<br/>ground_truth.csv"]:::done --> QS["Test questions<br/>questions.jsonl"]:::todo
+    QS --> RUN["Ask FinSight<br/>every question"]:::todo
+    RUN --> M1["Was the right page found?"]:::todo
+    RUN --> M2["Is the number correct?"]:::todo
+    RUN --> M3["Is the answer supported<br/>by the text?"]:::todo
+
+    classDef done fill:#d4edda,stroke:#28a745,color:#000
+    classDef todo fill:#eeeeee,stroke:#999999,color:#000
 ```
 
 ## Tools used
