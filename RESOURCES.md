@@ -73,11 +73,11 @@ Buffer days are for catching up. If you are on track, use them to re-read your o
 |---|---|---|
 | **Dec 6** | Matplotlib refresher | `src/tools/chart.py`: a multi-year comparison chart tool |
 | **Dec 7** | Read about hallucination and guardrails (Hamel's blog + the Advanced RAG course) | **Number verification:** every number in the answer must appear in a retrieved chunk or a calculator output, otherwise it gets flagged |
-| **Dec 8** | — | Refuse investment-advice and off-topic questions, with tests |
+| **Dec 8** | — | **Guardrails:** refuse investment-advice and off-topic questions, and answer "not found in the report" when no retrieved page supports the answer, with tests |
 | **Dec 9** | — | Add 20 agent questions (comparisons, ratios) to the eval set |
 | **Dec 10** | — | **Full eval run (v4)** and update the README table |
-| **Dec 11** | [LangSmith docs](https://docs.langchain.com/langsmith/observability) (free: 5,000 traces/month) or plain logging | Log tokens, latency and cost per query, and add averages to the README |
-| **Dec 12** | *Buffer* | `LEARNINGS.md` |
+| **Dec 11** | [LangSmith docs](https://docs.langchain.com/langsmith/observability) (free: 5,000 traces/month) or plain logging | **Monitoring:** log every query (question, pages found, answer, tokens, latency, cost) to a file, and add averages to the README |
+| **Dec 12** | Read about caching LLM calls | **Cache and router:** save answers so a repeated question costs nothing, and send easy questions to the cheaper model (flash-lite); measure the money saved. Then `LEARNINGS.md` |
 
 ## Week 7 (Dec 13–19): API, UI, Docker, deploy
 

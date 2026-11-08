@@ -320,11 +320,11 @@ The study material for each day is in [RESOURCES.md](RESOURCES.md).
 ### Week 6: An agent you can trust
 - [ ] **Dec 6:** Chart tool
 - [ ] **Dec 7:** Number checking
-- [ ] **Dec 8:** Refusing questions it can't answer, plus tests
+- [ ] **Dec 8:** Guardrails: refuse off-topic questions and say "not found" instead of guessing, plus tests
 - [ ] **Dec 9:** Agent test questions
 - [ ] **Dec 10:** Results (v4)
-- [ ] **Dec 11:** Cost and speed tracking
-- [ ] **Dec 12:** *Buffer*
+- [ ] **Dec 11:** Monitoring: log every question, its pages, cost and speed
+- [ ] **Dec 12:** Cache and router: repeat questions are free, easy ones go to the cheaper model
 
 ### Week 7: Release
 - [ ] **Dec 13:** FastAPI `/ask` endpoint
