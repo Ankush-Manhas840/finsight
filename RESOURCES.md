@@ -86,9 +86,9 @@ Buffer days are for catching up. If you are on track, use them to re-read your o
 | **Dec 13** | [FastAPI tutorial](https://fastapi.tiangolo.com/tutorial/) (you know this from the fraud project) | `src/api/main.py`: `/health` and `/ask` endpoints |
 | **Dec 14** | — | Pydantic schemas + `tests/test_api.py` |
 | **Dec 15** | [Streamlit: build a chat app](https://docs.streamlit.io/develop/tutorials/chat-and-llm-apps) | `app/streamlit_app.py`: a chat UI that shows citations and charts |
-| **Dec 16** | — | Upload a new annual report from the UI and ingest it on the fly |
+| **Dec 16** | — | Upload a new annual report from the UI and ingest it on the fly. **Hidden-instruction guard:** treat report text as data, never as commands, and test with a PDF that hides "ignore your rules" text |
 | **Dec 17** | [Docker: containerize a Python app](https://docs.docker.com/guides/python/) | A `Dockerfile` + compose setup running api + qdrant + ui |
-| **Dec 18** | [Streamlit Community Cloud](https://docs.streamlit.io/deploy/streamlit-community-cloud) + [Qdrant Cloud free cluster](https://qdrant.tech/documentation/cloud/) | Build the index **on your own PC** (Docling and the reranker are too heavy for ~1 GB RAM), upload vectors to Qdrant Cloud, deploy the Streamlit app. Open the Qdrant cluster weekly or it gets paused. *(Hugging Face Docker/Gradio Spaces now need a paid plan; Render's 512 MB is too small.)* |
+| **Dec 18** | [Streamlit Community Cloud](https://docs.streamlit.io/deploy/streamlit-community-cloud) + [Qdrant Cloud free cluster](https://qdrant.tech/documentation/cloud/) | Build the index **on your own PC** (Docling and the reranker are too heavy for ~1 GB RAM), upload vectors to Qdrant Cloud, deploy the Streamlit app. **Request limit:** at most about 10 questions per minute per visitor, so the free Gemini quota survives. Open the Qdrant cluster weekly or it gets paused. *(Hugging Face Docker/Gradio Spaces now need a paid plan; Render's 512 MB is too small.)* |
 | **Dec 19** | *Buffer* | Fix whatever broke in deployment |
 
 ## Week 8 (Dec 20–26): Polish + showcase

@@ -330,9 +330,9 @@ The study material for each day is in [RESOURCES.md](RESOURCES.md).
 - [ ] **Dec 13:** FastAPI `/ask` endpoint
 - [ ] **Dec 14:** API tests
 - [ ] **Dec 15:** Streamlit chat app
-- [ ] **Dec 16:** Upload your own report
+- [ ] **Dec 16:** Upload your own report, safe from hidden instructions inside the PDF
 - [ ] **Dec 17:** Docker
-- [ ] **Dec 18:** Free online demo
+- [ ] **Dec 18:** Free online demo, with a limit on questions per minute
 - [ ] **Dec 19:** *Buffer*
 
 ### Week 8: Showcase
